@@ -605,7 +605,9 @@ resource "aws_launch_template" "workers_launch_template" {
     )
   }
 
-  tags = var.tags
+  tags = merge(var.tags, {
+    yor_trace = "ca876c10-41bf-463b-aba8-c71440c6b136"
+  })
 
   lifecycle {
     create_before_destroy = true
@@ -639,7 +641,9 @@ resource "aws_iam_instance_profile" "workers_launch_template" {
   )
   path = var.iam_path
 
-  tags = var.tags
+  tags = merge(var.tags, {
+    yor_trace = "7c156376-117d-496c-9ad4-e7acca32ceb9"
+  })
 
   lifecycle {
     create_before_destroy = true

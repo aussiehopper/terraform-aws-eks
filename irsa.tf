@@ -19,5 +19,7 @@ resource "aws_iam_openid_connect_provider" "oidc_provider" {
       Name = "${var.cluster_name}-eks-irsa"
     },
     var.tags
-  )
+    , {
+      yor_trace = "fb42a38d-731f-498e-ac2d-32843e25c06c"
+  })
 }

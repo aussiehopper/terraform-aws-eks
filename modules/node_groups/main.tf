@@ -95,7 +95,9 @@ resource "aws_eks_node_group" "workers" {
     var.tags,
     lookup(var.node_groups_defaults, "additional_tags", {}),
     lookup(var.node_groups[each.key], "additional_tags", {}),
-  )
+    {
+      yor_trace = "6bcc1bc6-32a9-422a-a790-e621b1b88c46"
+  })
 
   lifecycle {
     create_before_destroy = true

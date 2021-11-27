@@ -58,6 +58,9 @@ data "aws_iam_policy_document" "aws_node_termination_handler" {
 resource "aws_iam_policy" "aws_node_termination_handler" {
   name   = "${local.name}-aws-node-termination-handler"
   policy = data.aws_iam_policy_document.aws_node_termination_handler.json
+  tags = {
+    yor_trace = "568c8864-3e5f-479b-ba56-49d7931bbe0b"
+  }
 }
 
 data "aws_region" "current" {}
@@ -103,6 +106,9 @@ resource "aws_cloudwatch_event_rule" "aws_node_termination_handler_asg" {
       "resources" : module.eks.workers_asg_arns
     }
   )
+  tags = {
+    yor_trace = "fc2d5151-1e41-496d-9bf7-7c96110739e3"
+  }
 }
 
 resource "aws_cloudwatch_event_target" "aws_node_termination_handler_asg" {
@@ -125,6 +131,9 @@ resource "aws_cloudwatch_event_rule" "aws_node_termination_handler_spot" {
       "resources" : module.eks.workers_asg_arns
     }
   )
+  tags = {
+    yor_trace = "cdeb953d-6f20-49bc-a38a-a3a7581a0673"
+  }
 }
 
 resource "aws_cloudwatch_event_target" "aws_node_termination_handler_spot" {
@@ -302,5 +311,6 @@ module "vpc" {
     Example    = local.name
     GithubRepo = "terraform-aws-eks"
     GithubOrg  = "terraform-aws-modules"
+    yor_trace  = "18e630c1-45d1-43f5-8bf3-1da00f135372"
   }
 }

@@ -5,7 +5,9 @@ resource "aws_cloudwatch_log_group" "this" {
   retention_in_days = var.cluster_log_retention_in_days
   kms_key_id        = var.cluster_log_kms_key_id
 
-  tags = var.tags
+  tags = merge(var.tags, {
+    yor_trace = "68c56ae6-bc77-4485-8cbe-cfcf15fd9c47"
+  })
 }
 
 resource "aws_eks_cluster" "this" {
@@ -42,7 +44,9 @@ resource "aws_eks_cluster" "this" {
   tags = merge(
     var.tags,
     var.cluster_tags,
-  )
+    {
+      yor_trace = "2bd5bf35-9bdd-4392-aae1-b0453bb796cb"
+  })
 
   timeouts {
     create = var.cluster_create_timeout
@@ -72,7 +76,9 @@ resource "aws_security_group" "cluster" {
     {
       "Name" = "${var.cluster_name}-eks_cluster_sg"
     },
-  )
+    {
+      yor_trace = "4492a495-9223-4a99-94dc-b3df5dfc0f49"
+  })
 }
 
 resource "aws_security_group_rule" "cluster_egress_internet" {
@@ -135,7 +141,9 @@ resource "aws_iam_role" "cluster" {
   path                  = var.iam_path
   force_detach_policies = true
 
-  tags = var.tags
+  tags = merge(var.tags, {
+    yor_trace = "4be24c6e-1236-4b15-8a62-f2d06cacf2c0"
+  })
 }
 
 resource "aws_iam_role_policy_attachment" "cluster_AmazonEKSClusterPolicy" {
@@ -186,7 +194,9 @@ resource "aws_iam_policy" "cluster_elb_sl_role_creation" {
   policy      = data.aws_iam_policy_document.cluster_elb_sl_role_creation[0].json
   path        = var.iam_path
 
-  tags = var.tags
+  tags = merge(var.tags, {
+    yor_trace = "34ec57fa-b395-4d51-bac2-b7a87af19fb5"
+  })
 }
 
 resource "aws_iam_role_policy_attachment" "cluster_elb_sl_role_creation" {
@@ -221,7 +231,9 @@ resource "aws_iam_policy" "cluster_deny_log_group" {
   policy      = data.aws_iam_policy_document.cluster_deny_log_group[0].json
   path        = var.iam_path
 
-  tags = var.tags
+  tags = merge(var.tags, {
+    yor_trace = "0b4ecc17-554a-4bd1-86e6-2e48cf398df6"
+  })
 }
 
 resource "aws_iam_role_policy_attachment" "cluster_deny_log_group" {

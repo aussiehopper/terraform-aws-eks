@@ -213,6 +213,9 @@ resource "aws_security_group" "worker_group_mgmt_one" {
       "10.0.0.0/8",
     ]
   }
+  tags = {
+    yor_trace = "d459f76a-d0a7-4129-b9f6-33388e47fcfb"
+  }
 }
 
 resource "aws_security_group" "worker_group_mgmt_two" {
@@ -227,6 +230,9 @@ resource "aws_security_group" "worker_group_mgmt_two" {
     cidr_blocks = [
       "192.168.0.0/16",
     ]
+  }
+  tags = {
+    yor_trace = "8c992f1e-5247-4660-b4ac-5081f01e53ed"
   }
 }
 
@@ -244,6 +250,9 @@ resource "aws_security_group" "all_worker_mgmt" {
       "172.16.0.0/12",
       "192.168.0.0/16",
     ]
+  }
+  tags = {
+    yor_trace = "f50621c8-2cb8-4aa3-ab23-d8ddd4c22346"
   }
 }
 
@@ -286,5 +295,6 @@ module "vpc" {
     Example    = local.name
     GithubRepo = "terraform-aws-eks"
     GithubOrg  = "terraform-aws-modules"
+    yor_trace  = "aa3a4447-9727-4885-a266-12d819e52cd0"
   }
 }

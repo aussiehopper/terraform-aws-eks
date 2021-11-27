@@ -90,6 +90,7 @@ resource "aws_launch_template" "default" {
   # Tag the LT itself
   tags = {
     CustomTag = "Launch template custom tag"
+    yor_trace = "1ff80698-47da-472b-9ea9-5d6b0c035524"
   }
 
   lifecycle {

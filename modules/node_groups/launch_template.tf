@@ -138,7 +138,9 @@ resource "aws_launch_template" "workers" {
     var.tags,
     lookup(var.node_groups_defaults, "additional_tags", {}),
     lookup(var.node_groups[each.key], "additional_tags", {}),
-  )
+    {
+      yor_trace = "e224fe9f-4684-4492-8922-49df794cf7c1"
+  })
 
   lifecycle {
     create_before_destroy = true

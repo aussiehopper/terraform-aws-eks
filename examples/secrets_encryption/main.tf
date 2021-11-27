@@ -79,6 +79,7 @@ resource "aws_kms_key" "eks" {
     Example    = local.name
     GithubRepo = "terraform-aws-eks"
     GithubOrg  = "terraform-aws-modules"
+    yor_trace  = "e4db3d82-ce17-4751-9a1e-ed193b0f8260"
   }
 }
 
@@ -122,5 +123,6 @@ module "vpc" {
     Example    = local.name
     GithubRepo = "terraform-aws-eks"
     GithubOrg  = "terraform-aws-modules"
+    yor_trace  = "495aaa8a-fe5d-489e-9fa3-f8b64b74d8d6"
   }
 }
