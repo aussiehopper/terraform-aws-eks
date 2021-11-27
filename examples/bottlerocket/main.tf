@@ -114,6 +114,9 @@ resource "tls_private_key" "nodes" {
 resource "aws_key_pair" "nodes" {
   key_name   = "bottlerocket-nodes-${random_string.suffix.result}"
   public_key = tls_private_key.nodes.public_key_openssh
+  tags = {
+    yor_trace = "ed739891-fc9a-4016-a113-ce23b8cd3935"
+  }
 }
 
 ################################################################################
@@ -155,5 +158,6 @@ module "vpc" {
     Example    = local.name
     GithubRepo = "terraform-aws-eks"
     GithubOrg  = "terraform-aws-modules"
+    yor_trace  = "35b5374e-7427-4fc3-962d-03050d32dba9"
   }
 }

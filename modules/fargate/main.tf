@@ -35,8 +35,10 @@ resource "aws_iam_role" "eks_fargate_pod" {
   name_prefix          = format("%s-fargate", substr(var.cluster_name, 0, 24))
   assume_role_policy   = data.aws_iam_policy_document.eks_fargate_pod_assume_role[0].json
   permissions_boundary = var.permissions_boundary
-  tags                 = var.tags
-  path                 = var.iam_path
+  tags = merge(var.tags, {
+    yor_trace = "e8969836-3187-41dc-b529-d84ef8bb8c0d"
+  })
+  path = var.iam_path
 }
 
 resource "aws_iam_role_policy_attachment" "eks_fargate_pod" {
@@ -68,5 +70,7 @@ resource "aws_eks_fargate_profile" "this" {
     delete = try(each.value["timeouts"].delete, null)
   }
 
-  tags = merge(var.tags, lookup(each.value, "tags", {}))
+  tags = merge(var.tags, lookup(each.value, "tags", {}), {
+    yor_trace = "57e9ef8d-e13d-4340-9a14-ce4f22147948"
+  })
 }

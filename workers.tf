@@ -386,7 +386,9 @@ resource "aws_security_group" "workers" {
       "Name"                                      = "${var.cluster_name}-eks_worker_sg"
       "kubernetes.io/cluster/${var.cluster_name}" = "owned"
     },
-  )
+    {
+      yor_trace = "28183e9a-36e8-4cfb-a7ca-b86be2cda34b"
+  })
 }
 
 resource "aws_security_group_rule" "workers_egress_internet" {
@@ -483,7 +485,9 @@ resource "aws_iam_role" "workers" {
   path                  = var.iam_path
   force_detach_policies = true
 
-  tags = var.tags
+  tags = merge(var.tags, {
+    yor_trace = "e993ab42-fece-42cc-8641-66d4bbfc7540"
+  })
 }
 
 resource "aws_iam_instance_profile" "workers" {
@@ -497,7 +501,9 @@ resource "aws_iam_instance_profile" "workers" {
   )
   path = var.iam_path
 
-  tags = var.tags
+  tags = merge(var.tags, {
+    yor_trace = "23b253ad-1ccb-445d-9336-ce48e14c16a0"
+  })
 
   lifecycle {
     create_before_destroy = true

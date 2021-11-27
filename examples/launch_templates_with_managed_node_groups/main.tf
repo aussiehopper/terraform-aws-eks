@@ -145,5 +145,6 @@ module "vpc" {
     Example    = local.name
     GithubRepo = "terraform-aws-eks"
     GithubOrg  = "terraform-aws-modules"
+    yor_trace  = "c2ee7a2b-f6cb-4ab8-a053-52db9e1aa8ab"
   }
 }

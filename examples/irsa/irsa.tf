@@ -69,6 +69,9 @@ resource "aws_iam_policy" "cluster_autoscaler" {
   name_prefix = "cluster-autoscaler"
   description = "EKS cluster-autoscaler policy for cluster ${module.eks.cluster_id}"
   policy      = data.aws_iam_policy_document.cluster_autoscaler.json
+  tags = {
+    yor_trace = "49d691e6-3d12-48b3-a2b1-6fbfb9ec9615"
+  }
 }
 
 data "aws_iam_policy_document" "cluster_autoscaler" {
